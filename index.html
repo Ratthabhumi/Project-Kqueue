@@ -29,13 +29,13 @@
         </aside>
         <main class="right">
             <div class="form-container">
-                <form onsubmit="return validateLoginForm()" action="/login" method="POST">
+                <form onsubmit="return validateLoginForm()" action="/.netlify/functions/login" method="POST">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" aria-label="Email" required>
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" aria-label="Password" required>
                     <input type="submit" value="Login">
-                    <p><a href="/register">Don't have an account? Register Now!</a></p>
+                    <p><a href="/.netlify/functions/register">Don't have an account? Register Now!</a></p>
                 </form>
             </div>
         </main>

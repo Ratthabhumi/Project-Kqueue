@@ -1,3 +1,11 @@
+const { MongoClient } = require('mongodb');
+const bcrypt = require('bcrypt');
+
+// Load environment variables from .env file
+require('dotenv').config();
+
+const uri = process.env.MONGODB_URI;
+
 exports.handler = async function(event, context) {
     if (event.httpMethod !== 'POST') {
         return {

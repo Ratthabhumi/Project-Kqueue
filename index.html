@@ -29,7 +29,7 @@
         </aside>
         <main class="right">
             <div class="form-container">
-                <form onsubmit="return validateLoginForm()" action="/.netlify/functions/login" method="POST">
+                <form onsubmit="return handleSubmit(event)">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" aria-label="Email" required>
                     <label for="password">Password</label>
@@ -41,15 +41,31 @@
         </main>
     </div>
     <script>
-        function validateLoginForm() {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+        async function handleSubmit(event) {
+            event.preventDefault(); // Prevent form from submitting the default way
 
-            if (email === '' || password === '') {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
                 alert('All fields are required!');
-                return false;
+                return;
             }
-            return true;
+
+            const response = await fetch('/.netlify/functions/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                window.location.href = '/welcome';
+            } else {
+                alert(result.message);
+            }
         }
     </script>
 </body>

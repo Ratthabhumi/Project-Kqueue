@@ -21,7 +21,6 @@ exports.handler = async function(event, context) {
         const collection = db.collection('users');
 
         const hashedPassword = await bcrypt.hash(password.trim(), 10);
-
         await collection.insertOne({ email: email.trim(), password: hashedPassword });
 
         return {
@@ -35,7 +34,6 @@ exports.handler = async function(event, context) {
                 body: JSON.stringify({ message: 'Email is already registered' }),
             };
         }
-
         return {
             statusCode: 500,
             body: JSON.stringify({ message: 'Error registering new user', error: error.message }),

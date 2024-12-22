@@ -13,6 +13,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
 
+// Log the MONGODB_URI to confirm it is loaded
+console.log('MONGODB_URI:', process.env.MONGODB_URI);
+
 // Connect to MongoDB using environment variable
 mongoose.connect(
     process.env.MONGODB_URI,

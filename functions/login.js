@@ -11,7 +11,21 @@ exports.handler = async function(event, context) {
         };
     }
 
-    const { email, password } = JSON.parse(event.body);
+    // Log the incoming event body for debugging
+    console.log('Received event body:', event.body);
+
+    let email, password;
+    try {
+        const requestBody = JSON.parse(event.body);
+        email = requestBody.email;
+        password = requestBody.password;
+    } catch (error) {
+        console.error('Error parsing JSON:', error);
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ message: 'Invalid JSON format' }),
+        };
+    }
 
     try {
         const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -42,6 +56,7 @@ exports.handler = async function(event, context) {
             body: JSON.stringify({ message: 'Login successful' }),
         };
     } catch (error) {
+        console.error('Error during login:', error);
         return {
             statusCode: 500,
             body: JSON.stringify({ message: 'Error logging in', error: error.message }),

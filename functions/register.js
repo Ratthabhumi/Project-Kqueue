@@ -17,8 +17,8 @@ exports.handler = async function(event, context) {
         const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
         await client.connect();
 
-        const db = client.db('your-database-name');
-        const collection = db.collection('your-collection-name');
+        const db = client.db('test');
+        const collection = db.collection('users');
 
         const hashedPassword = await bcrypt.hash(password.trim(), 10);
 

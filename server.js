@@ -5,14 +5,17 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const User = require('./models/User');
 
+// Load environment variables from .env file
+require('dotenv').config();
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
 
-// Connect to MongoDB
+// Connect to MongoDB using environment variable
 mongoose.connect(
-    'mongodb+srv://66011198:j9aBN7TwkvYg7FP6@kqueue.xdlrb.mongodb.net/?retryWrites=true&w=majority&appName=Kqueue',
+    process.env.MONGODB_URI,
     {
         serverSelectionTimeoutMS: 5000 // Increase timeout for server selection
     }

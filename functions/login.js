@@ -1,12 +1,11 @@
-const { MongoClient } = require('mongodb');
-const bcrypt = require('bcrypt');
-
-const uri = process.env.MONGODB_URI;
-
 exports.handler = async function(event, context) {
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'POST'
+            },
             body: 'Method Not Allowed',
         };
     }
@@ -20,6 +19,9 @@ exports.handler = async function(event, context) {
         console.error('Error parsing JSON:', error);
         return {
             statusCode: 400,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
             body: JSON.stringify({ message: 'Invalid JSON format' }),
         };
     }
@@ -36,6 +38,9 @@ exports.handler = async function(event, context) {
         if (!user) {
             return {
                 statusCode: 400,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
                 body: JSON.stringify({ message: 'Invalid email or password' }),
             };
         }
@@ -44,18 +49,27 @@ exports.handler = async function(event, context) {
         if (!isMatch) {
             return {
                 statusCode: 400,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
                 body: JSON.stringify({ message: 'Invalid email or password' }),
             };
         }
 
         return {
             statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
             body: JSON.stringify({ message: 'Login successful' }),
         };
     } catch (error) {
         console.error('Error during login:', error);
         return {
             statusCode: 500,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
             body: JSON.stringify({ message: 'Error logging in', error: error.message }),
         };
     }

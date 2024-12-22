@@ -11,9 +11,6 @@ exports.handler = async function(event, context) {
         };
     }
 
-    // Log the incoming event body for debugging
-    console.log('Received event body:', event.body);
-
     let email, password;
     try {
         const requestBody = JSON.parse(event.body);

@@ -1,0 +1,128 @@
+/* styles.css */
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4; /* Light grey background */
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border: 1px solid #000;
+    background-color: #ffffff; /* White background for container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add more shadow */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure the rounded corners apply */
+}
+.left, .right {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.left {
+    border-right: 1px solid #000;
+}
+.top-left {
+    height: 60%;
+    border-bottom: 1px solid #000;
+}
+.bottom-left {
+    display: flex;
+    height: 40%;
+}
+.bottom-left div {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.bottom-left .what-we-do {
+    border-right: 1px solid #000;
+    padding-right: 15px;
+}
+.bottom-left .contact-us {
+    padding-left: 5px;
+}
+.form-container {
+    border: 1px solid #000;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f8f8f8; /* Light background for form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add more shadow */
+}
+.form-container input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px; /* Increased padding for better look */
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded corners for inputs */
+}
+.form-container input[type="submit"] {
+    cursor: pointer;
+    background-color: #006400; /* Dark green color for submit button */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners for button */
+    padding: 10px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.form-container input[type="submit"]:hover {
+    background-color: #004d00; /* Darker green on hover */
+}
+h1 {
+    color: #006400; /* Dark green color for main title */
+    font-family: 'Georgia', serif; /* More elegant font for title */
+}
+h2 {
+    color: #004d00; /* Darker green for section titles */
+    font-family: 'Georgia', serif; /* More elegant font for section titles */
+}
+p, label {
+    font-family: 'Georgia', serif; /* More elegant font for paragraphs and labels */
+}
+a {
+    color: #004d00; /* Dark green for links */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:hover {
+    color: #006400; /* Slightly lighter green on hover for links */
+}
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .left, .right {
+        flex: 1 0 100%;
+        padding: 10px;
+    }
+    .top-left, .bottom-left {
+        height: auto;
+    }
+    .bottom-left {
+        flex-direction: column;
+    }
+    .bottom-left .what-we-do {
+        border-right: none;
+        border-bottom: 1px solid #000;
+        padding-right: 0;
+    }
+    .bottom-left .contact-us {
+        padding-left: 0;
+    }
+}
+@media (max-width: 480px) {
+    .form-container {
+        padding: 10px;
+    }
+    .form-container input {
+        padding: 6px;
+        font-size: 0.9em;
+    }
+}

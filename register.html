@@ -29,28 +29,34 @@
         </aside>
         <main class="right">
             <div class="form-container">
-                <form onsubmit="return validateRegisterForm()" action="/register" method="POST">
+                <form onsubmit="return handleRegister(event)" method="POST">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" aria-label="Email" required>
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" aria-label="Password" required>
                     <input type="submit" value="Register">
-                    <p><a href="/">Already have an account? Login</a></p>
                 </form>
             </div>
         </main>
     </div>
     <script>
-        function validateRegisterForm() {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+        async function handleRegister(event) {
+            event.preventDefault(); // Prevent form from submitting the default way
 
-            if (email === '' || password === '') {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
                 alert('All fields are required!');
-                return false;
+                return;
             }
-            return true;
-        }
-    </script>
-</body>
-</html>
+
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({ email, password })
+            });
+
+            if (response.ok[_{{{CITATION{{{_1{](https://github.com/Mostafa-AbdElfattah/Full-Stack-10-Back-End/tree/0b73405c624a41dce608c71dda20ccdb03013b6d/Session_4-tasks%2FTask2%2Findex.php)[_{{{CITATION{{{_2{](https://github.com/wiindha/PraktikumWebD/tree/8e0aa794f31847c2ad46b081a1427cafec12f6fe/Tugas12%2FMasuk.php)[_{{{CITATION{{{_3{](https://github.com/itsjerz/itsjerz/tree/f3a8b1cbef26298b2d7b1b5fcdc7c653ac907c2b/login.php)[_{{{CITATION{{{_4{](https://github.com/Kalyani-31121/phpmysqlworkshopiitb/tree/aaf51e4d57a63a8dc47b586ad6bbde763b287999/Day6%2C_7%2Faddstudent.php)[_{{{CITATION{{{_5{](https://github.com/namntgch18325/Nguyen-Tien-Nam/tree/b4657108812d898167ccec262568d71e2a3b84f6/mvc%2Fview%2Fregister.php)

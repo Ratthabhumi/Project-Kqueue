@@ -1,12 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const User = require('./models/User');
-
-// Load environment variables from .env file
-require('dotenv').config();
 
 const app = express();
 
